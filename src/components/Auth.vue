@@ -1,5 +1,5 @@
 <template>
-  <v-layout wrap text-center class="auth-container">
+  <v-layout wrap text-center>
     <v-flex py-4 xs12 class="headline">
       Authenticate with Spotify
     </v-flex>
@@ -29,9 +29,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* .auth-container {
-  background: black;
-} */
-</style>

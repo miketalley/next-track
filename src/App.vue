@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
-    <drawer />
 
-    <toolbar />
+    <drawer v-if="loggedIn" />
+    <toolbar v-if="loggedIn" />
 
     <v-content>
       <v-container>
@@ -11,7 +11,11 @@
     </v-content>
 
     <v-footer app>
-      <span>&copy; 2019</span>
+      <v-layout wrap>
+        <v-flex xs12 text-end>
+          &copy; 2019 Mike Talley
+        </v-flex>
+      </v-layout>
     </v-footer>
   </v-app>
 </template>
@@ -32,6 +36,11 @@ export default {
   },
   created() {
     this.$vuetify.theme.dark = true;
+  },
+  computed: {
+    loggedIn() {
+      return false;
+    }
   }
 };
 </script>
