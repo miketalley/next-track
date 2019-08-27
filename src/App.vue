@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
 
-    <drawer v-if="loggedIn" />
-    <toolbar v-if="loggedIn" />
+    <drawer v-if="user.spotifyAccessToken" />
+    <toolbar v-if="user.spotifyAccessToken" />
 
     <v-content>
       <v-container>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+import { mapState } from 'vuex';
 import Drawer from '@/components/nav/Drawer.vue';
 import Toolbar from '@/components/Toolbar.vue';
 
@@ -36,10 +38,16 @@ export default {
   },
   created() {
     this.$vuetify.theme.dark = true;
+    this.loadCookies();
   },
   computed: {
-    loggedIn() {
-      return false;
+    ...mapState([
+      'user'
+    ])
+  },
+  methods: {
+    loadCookies() {
+      this.$store.commit('LOGIN', Cookies.get('SPOTIFY_ACCESS_TOKEN'));
     }
   }
 };

@@ -1,25 +1,21 @@
-import {
-  $SPOTIFY_CLIENT_ID
-} from '@/utils/globals';
+import Cookies from 'js-cookie';
 
 export default {
   state: {
-    code: null,
-    state: null
+    spotifyAccessToken: null,
+    loggedIn: false
   },
   mutations: {
-    TOGGLE_DRAWER(state, loginData) {
-      state.code = loginData.code;
-      state.state = loginData.state;
-    }
-  },
-  actions: {
-    AUTH_USER() {
-      window.open(
-        `https://accounts.spotify.com/authorize?client_id=${$SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${window.location.origin}/authReturn&state=34fFs29kd09`,
-        '_blank',
-        'height=700, width=400, status=yes, toolbar=no, menubar=no, location=no'
-      );
+    LOGIN(state, token) {
+      Cookies.set('SPOTIFY_ACCESS_TOKEN', token, { expires: 30 });
+      state.spotifyAccessToken = token;
+      state.loggedIn = true;
+    },
+    LOGOUT(state) {
+      Cookies.set('SPOTIFY_ACCESS_TOKEN', null);
+      state.spotifyAccessToken = null;
+      state.loggedIn = false;
+      this.$router.push('auth');
     }
   }
 };

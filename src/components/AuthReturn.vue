@@ -32,20 +32,12 @@ export default {
     return {};
   },
   created() {
-    const { code, error } = this.$props;
-    if (!error && code) {
-      this.$cookie.set('SPOTIFY_ACCESS_TOKEN', code, 90);
-      if (window.opener) {
-        window.opener.location = '/';
-        window.close();
-      }
+    if (window.opener) {
+      window.opener.authComplete(this.$props);
+      window.close();
+    } else {
+      window.location.reload();
     }
   }
 };
 </script>
-
-<style scoped>
-/* .auth-container {
-  background: black;
-} */
-</style>

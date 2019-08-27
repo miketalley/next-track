@@ -3,7 +3,7 @@ export default {
     drawer: false
   },
   mutations: {
-    toggleDrawer(state) {
+    TOGGLE_DRAWER(state) {
       state.drawer = !state.drawer;
     }
   },
