@@ -4,7 +4,7 @@
   clipped-left
 >
   <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
-  <v-toolbar-title>Vue Base</v-toolbar-title>
+  <v-toolbar-title>Next Track</v-toolbar-title>
 </v-app-bar>
 </template>
 

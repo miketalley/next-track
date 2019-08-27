@@ -1,4 +1,4 @@
-# vue-base
+# Next Track
 
 ## Project setup
 ```
