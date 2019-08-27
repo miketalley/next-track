@@ -32,9 +32,15 @@ export default {
     return {};
   },
   created() {
-    console.log('Props: ', this.$props);
+    const { code, error } = this.$props;
+    if (!error && code) {
+      this.$cookie.set('SPOTIFY_ACCESS_TOKEN', code, 90);
+      if (window.opener) {
+        window.opener.location = '/';
+        window.close();
+      }
+    }
   }
-
 };
 </script>
 

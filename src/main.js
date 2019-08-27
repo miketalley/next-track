@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib';
+import VueCookie from 'vue-cookie';
 import App from './App.vue';
 import router from '@/router/index';
 import store from '@/store/index';
 import prototypeGlobals from '@/utils/globals';
 
 Vue.use(Vuetify);
+Vue.use(VueCookie);
 Vue.config.productionTip = false;
 Object.assign(Vue.prototype, prototypeGlobals);
 
