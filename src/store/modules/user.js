@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   $SPOTIFY_CLIENT_ID
 } from '@/utils/globals';
@@ -16,7 +15,11 @@ export default {
   },
   actions: {
     AUTH_USER() {
-      return axios.get(`https://accounts.spotify.com/authorize?client_id=${$SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${window.location.origin}/authReturn&state=34fFs29kd09`);
+      window.open(
+        `https://accounts.spotify.com/authorize?client_id=${$SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${window.location.origin}/authReturn&state=34fFs29kd09`,
+        '_blank',
+        'height=700, width=400, status=yes, toolbar=no, menubar=no, location=no'
+      );
     }
   }
 };
