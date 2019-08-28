@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
 
-    <drawer v-if="user.spotifyAccessToken" />
-    <toolbar v-if="user.spotifyAccessToken" />
+    <drawer v-if="user.accessToken" />
+    <toolbar v-if="user.accessToken" />
 
     <v-content>
       <v-container>
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     loadCookies() {
-      this.$store.commit('LOGIN', Cookies.get('SPOTIFY_ACCESS_TOKEN'));
+      this.$store.commit('LOGIN', Cookies.getJSON('SPOTIFY_ACCESS_TOKEN_DATA'));
     }
   }
 };

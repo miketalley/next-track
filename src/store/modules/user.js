@@ -1,22 +1,33 @@
 import Cookies from 'js-cookie';
-import router from '@/router/index';
+// import router from '@/router/index';
 
 export default {
   state: {
-    spotifyAccessToken: null,
+    accessToken: null,
+    refreshToken: null,
+    expiresIn: null,
+    tokenType: null,
+    scope: null,
     loggedIn: false
   },
   mutations: {
-    LOGIN(state, token) {
-      Cookies.set('SPOTIFY_ACCESS_TOKEN', token, { expires: 30 });
-      state.spotifyAccessToken = token;
-      state.loggedIn = true;
+    LOGIN(state, data) {
+      if (data) {
+        console.log('User State: ', state);
+        Cookies.set('SPOTIFY_ACCESS_TOKEN_DATA', data, { expires: data.expires_in });
+        state.accessToken = data.access_token;
+        state.refreshToken = data.refresh_token;
+        state.expiresIn = data.expires_in;
+        state.tokenType = data.token_type;
+        state.scope = data.scope;
+        state.loggedIn = true;
+        // router.push('home');
+      }
     },
     LOGOUT(state) {
       Cookies.set('SPOTIFY_ACCESS_TOKEN', null);
-      state.spotifyAccessToken = null;
       state.loggedIn = false;
-      router.push('auth');
+      // router.push('auth');
     }
   }
 };

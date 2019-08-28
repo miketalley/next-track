@@ -42,10 +42,11 @@ export default {
         method: 'get',
         url: `https://api.spotify.com/v1/${this.search.term}`,
         headers: {
-          Authorization: `Bearer ${this.user.spotifyAccessToken}`
+          Authorization: `Bearer ${this.user.accessToken}`
         }
       }).then((resp) => {
-        this.result = resp;
+        console.log('Result: ', resp.data);
+        this.result = JSON.stringify(resp.data);
       });
     }
   }

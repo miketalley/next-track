@@ -1,4 +1,4 @@
-import spotify from '@/utils/spotify';
+import { get } from '@/utils/spotify';
 
 export default {
   state: {
@@ -12,7 +12,7 @@ export default {
   },
   actions: {
     runSearch({ state }) {
-      spotify.get(`search/${state.term}`);
+      get(`search/${state.term}`);
     }
   }
 };
