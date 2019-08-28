@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import router from '@/router/index';
 
 export default {
   state: {
@@ -15,7 +16,7 @@ export default {
       Cookies.set('SPOTIFY_ACCESS_TOKEN', null);
       state.spotifyAccessToken = null;
       state.loggedIn = false;
-      this.$router.push('auth');
+      router.push('auth');
     }
   }
 };
