@@ -7,16 +7,6 @@ module.exports = (
     // eslint-disable-next-line camelcase
     const { code, redirect_uri } = req.body;
 
-    console.log('Request Body: ', req.body);
-
-    console.log('Requesting Access Token with: ', {
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri,
-      client_id: process.env.VUE_APP_SPOTIFY_CLIENT_ID,
-      client_secret: process.env.VUE_APP_SPOTIFY_CLIENT_SECRET
-    });
-
     request.post({
       url: 'https://accounts.spotify.com/api/token',
       form: {
@@ -24,7 +14,7 @@ module.exports = (
         code,
         redirect_uri,
         client_id: process.env.VUE_APP_SPOTIFY_CLIENT_ID,
-        client_secret: process.env.VUE_APP_SPOTIFY_CLIENT_SECRET
+        client_secret: process.env.SPOTIFY_CLIENT_SECRET
       }
     }, (error, response, body) => {
       res.send(body);
