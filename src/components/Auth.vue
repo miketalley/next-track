@@ -1,23 +1,31 @@
 <template>
-  <v-layout wrap text-center>
-    <v-flex py-4 xs12 class="headline">
-      Authenticate with Spotify
-    </v-flex>
-    <v-flex pb-4 xs12>
+  <v-row class="text-center">
+    <v-col cols="12" class="display-2">
+      Next Track
+    </v-col>
+    <v-col cols="12">
+      <v-row justify="center">
+        <v-col cols="6">
+          Our app needs permission to obtain your Spotify data to provide an
+          enhanced music experience. Login with Spotify to continue.
+        </v-col>
+      </v-row>
+    </v-col>
+    <v-col cols="12">
       <img src="/img/spotify_logo.png" width="300px" height="auto">
-    </v-flex>
-    <v-flex xs12>
+    </v-col>
+    <v-col cols="12">
       <v-btn
         color="#1DB954"
         @click="auth"
       >
         Login with Spotify
       </v-btn>
-    </v-flex>
-    <v-flex v-if="error" xs12>
+    </v-col>
+    <v-col cols="12" v-if="error" xs12>
       Error: {{ error }}
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -65,7 +73,7 @@ export default {
         }
       }).then((resp) => {
         console.log('Access Token Resp: ', resp.data);
-        this.$store.commit('LOGIN', resp.data);
+        this.$store.dispatch('LOGIN', resp.data);
       });
     }
   }

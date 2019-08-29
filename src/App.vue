@@ -1,21 +1,22 @@
 <template>
   <v-app id="inspire">
 
-    <drawer v-if="user.accessToken" />
-    <toolbar v-if="user.accessToken" />
+    <drawer v-if="loggedIn" />
+    <toolbar v-if="loggedIn" />
 
     <v-content>
       <v-container>
-        <router-view />
+        <v-overlay :value="ui.content.loading">
+          <v-progress-circular indeterminate size="64"></v-progress-circular>
+        </v-overlay>
+        <router-view v-if="!ui.content.loading" />
       </v-container>
     </v-content>
 
     <v-footer app>
-      <v-layout wrap>
-        <v-flex xs12 text-end>
-          &copy; 2019 Mike Talley
-        </v-flex>
-      </v-layout>
+      <v-col class="text-end">
+        &copy; 2019 Mike Talley
+      </v-col>
     </v-footer>
   </v-app>
 </template>
@@ -39,15 +40,20 @@ export default {
   created() {
     this.$vuetify.theme.dark = true;
     this.loadCookies();
+    this.$store.commit('SET_DRAWER_STATE', false);
   },
   computed: {
     ...mapState([
+      'ui',
       'user'
-    ])
+    ]),
+    loggedIn() {
+      return this.user.spotify.tokenData;
+    }
   },
   methods: {
     loadCookies() {
-      this.$store.commit('LOGIN', Cookies.getJSON('SPOTIFY_ACCESS_TOKEN_DATA'));
+      this.$store.dispatch('LOGIN', Cookies.getJSON('SPOTIFY_ACCESS_TOKEN_DATA'));
     }
   }
 };

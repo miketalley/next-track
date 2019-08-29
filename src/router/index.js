@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import Home from '@/components/Home.vue';
 import Auth from '@/components/Auth.vue';
 import AuthReturn from '@/components/AuthReturn.vue';
+import Playlists from '@/components/Playlists.vue';
+import Playlist from '@/components/Playlist.vue';
 
 Vue.use(Router);
 
@@ -14,6 +16,22 @@ const router = new Router({
       path: '/home',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/playlists',
+      name: 'playlists',
+      component: Playlists
+    },
+    {
+      path: '/playlist/:id',
+      name: 'playlistid',
+      component: Playlist
+    },
+    {
+      path: '/playlist',
+      name: 'playlist',
+      props: true,
+      component: Playlist
     },
     {
       path: '/authReturn',

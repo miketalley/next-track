@@ -1,15 +1,15 @@
 <template>
-  <v-layout wrap text-center>
-    <v-flex py-4 xs12>
+  <v-row justify="center">
+    <v-col cols="12">
       Code: {{ code }}
-    </v-flex>
-    <v-flex pb-4 xs12>
+    </v-col>
+    <v-col cols="12">
       State: {{ state }}
-    </v-flex>
-    <v-flex pb-4 xs12>
+    </v-col>
+    <v-col cols="12">
       Error: {{ error }}
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
