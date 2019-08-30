@@ -1,5 +1,5 @@
 <template>
-  <v-list-item link>
+  <v-list-item link class="mb-0">
     <v-list-item-content>
       <v-row no-gutters justify="center" align="center">
         <v-col cols="1">

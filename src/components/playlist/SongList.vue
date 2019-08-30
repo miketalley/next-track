@@ -21,7 +21,12 @@ export default {
       }
     });
 
-    return h(VList, c);
+    return h(VList, {
+      class: 'py-0',
+      attrs: {
+        dense: true
+      }
+    }, c);
   },
   components: {
     Song,
