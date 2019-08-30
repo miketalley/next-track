@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import CurrentSong from '@/components/CurrentSong.vue';
 import SongControls from '@/components/SongControls.vue';
 import Controls from '@/components/Controls.vue';
@@ -28,13 +27,6 @@ export default {
   },
   data() {
     return {};
-  },
-  created() {},
-  computed: {
-    ...mapState([
-      'spotify'
-    ])
-  },
-  methods: {}
+  }
 };
 </script>

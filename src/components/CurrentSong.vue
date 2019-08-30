@@ -9,7 +9,6 @@
           {{ spotify.currentSong.track.name }}
         </v-col>
         <v-col cols="12" class="pt-1 pb-0 caption">
-          <!-- {{ spotify.currentSong.track.artists[0].name }} -->
           {{ artist }}
         </v-col>
       </v-row>
