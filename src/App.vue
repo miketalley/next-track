@@ -41,6 +41,7 @@ export default {
     this.$vuetify.theme.dark = true;
     this.loadCookies();
     this.$store.commit('SET_DRAWER_STATE', false);
+    this.$store.commit('CONTENT_LOADING', false);
   },
   computed: {
     ...mapState([

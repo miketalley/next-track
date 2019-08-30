@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router/index';
 
 export default {
   state: {
@@ -8,16 +9,22 @@ export default {
   actions: {
     SPOTIFY_GET({ rootState }, endpoint) {
       return new Promise((resolve, reject) => {
-        axios({
-          method: 'get',
-          url: `https://api.spotify.com/v1/${endpoint}`,
-          headers: {
-            Authorization: `Bearer ${rootState.user.spotify.tokenData.access_token}`
-          }
-        }).then(resolve).catch((e) => {
-          console.log('SPOTIFY_GET Error: ', e);
-          reject(e);
-        });
+        if (rootState.user.spotify.tokenData) {
+          axios({
+            method: 'get',
+            url: `https://api.spotify.com/v1/${endpoint}`,
+            headers: {
+              Authorization: `Bearer ${rootState.user.spotify.tokenData.access_token}`
+            }
+          }).then(resolve).catch((e) => {
+            console.log('SPOTIFY_GET Error: ', e);
+            reject(e);
+          }).finally((foo, bar) => {
+            console.log('Finally: ', foo, bar);
+          });
+        } else {
+          router.push({ name: 'auth' });
+        }
       });
     },
     LOAD_PLAYLISTS({ dispatch, state }) {

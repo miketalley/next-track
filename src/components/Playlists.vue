@@ -5,7 +5,7 @@
         v-for="playlist in spotify.playlists"
         :key="playlist.name"
         align="center"
-        @click="showPlaylistDetails(playlist)">
+        @click="showPlaylistDetails(playlist.id)">
         <v-col sm="auto">
           <img
             :src="playlist.images[0].url"
@@ -38,20 +38,17 @@ export default {
     ])
   },
   created() {
-    this.$store.commit('CONTENT_LOADING', true);
-    this.$store.dispatch('LOAD_PLAYLISTS').then(() => {
-      this.$store.commit('CONTENT_LOADING', false);
-    });
+    this.$store.dispatch('LOAD_PLAYLISTS');
+
+    // this.$store.commit('CONTENT_LOADING', true);
+    // this.$store.dispatch('LOAD_PLAYLISTS').then(() => {
+    //   this.$store.commit('CONTENT_LOADING', false);
+    // });
   },
   methods: {
-    showPlaylistDetails(playlist) {
-      console.log('Playlist: ', playlist);
-      this.$router.push({
-        name: 'playlist',
-        params: {
-          playlist
-        }
-      });
+    showPlaylistDetails(id) {
+      console.log('Playlist: ', id);
+      this.$router.push(`playlists/${id}`);
     }
   }
 };

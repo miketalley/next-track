@@ -15,6 +15,17 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+    <v-divider />
+    <v-subheader>PLAYLISTS</v-subheader>
+    <v-list dense>
+      <v-list-item link v-for="playlist in spotify.playlists" :key="playlist.id">
+        <v-list-item-content @click="showPlaylistDetails(playlist.id)">
+          <v-list-item-title>
+            {{ playlist.name }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -25,27 +36,31 @@ export default {
   data: () => ({
     componentsMenu: [
       {
-        title: 'Home',
-        route: 'home'
+        title: 'Endpoint Test',
+        route: '/test'
       },
       {
         title: 'Auth',
-        route: 'auth'
+        route: '/auth'
       },
       {
         title: 'Playlists',
-        route: 'playlists'
+        route: '/playlists'
       }
     ]
   }),
   computed: {
     ...mapState([
-      'ui'
+      'ui',
+      'spotify'
     ])
   },
   methods: {
     toggleDrawer() {
       this.$store.commit('TOGGLE_DRAWER');
+    },
+    showPlaylistDetails(id) {
+      this.$router.push(`/playlists/${id}`);
     }
   }
 };

@@ -1,36 +1,66 @@
 <template>
-  <v-row>
+  <v-row v-if="playlist" justify="center" align="end">
     <v-col sm="auto">
-      <img
-        :src="playlist.images[0].url"
-        height="250"
-        width="250"
-      >
+      <playlist-image :playlist="playlist" />
     </v-col>
     <v-col class="pt-0">
-      <h3 class="subheading">
-        {{ playlist.name }}
-      </h3>
+      <v-row>
+        <v-col cols="12">
+          Playlist
+        </v-col>
+        <v-col cols="12">
+          <h3 class="display-2">
+            {{ playlist.name }}
+          </h3>
+        </v-col>
+        <v-col cols="12">
+          Created by
+          {{ playlist.owner.display_name }} - {{ playlist.tracks.total }} tracks,
+          <duration :playlist="playlist" />
+        </v-col>
+        <v-col cols="12">
+          <v-row>
+            <v-col cols="6">
+              <play :playlist="playlist" />
+            </v-col>
+            <v-col cols="6">
+              ...
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-col>
+    <v-col cols="12">
+      <song-list :playlist="playlist" />
     </v-col>
   </v-row>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import moment from 'moment';
+import Play from '@/components/playlist/buttons/Play.vue';
+import Duration from '@/components/playlist/Duration.vue';
+import PlaylistImage from '@/components/playlist/Image.vue';
+import SongList from '@/components/playlist/SongList.vue';
 
 export default {
+  components: {
+    Duration,
+    PlaylistImage,
+    Play,
+    SongList
+  },
   props: {
-    // playlist: {
-    //   type: Object,
-    //   required: false
-    // },
     id: {
       type: String,
       required: false
     }
   },
   data() {
-    return {};
+    return {
+      playlist: null
+    };
   },
   computed: {
     ...mapState([
@@ -38,11 +68,37 @@ export default {
     ])
   },
   created() {
-    this.$store.commit('CONTENT_LOADING', true);
-    if (!this.playlist) {
-      console.log('this.$props.id: ', this.$props.id);
+    this.loadPlaylist(this.$props.id);
+  },
+  methods: {
+    loadPlaylist(id) {
+      this.$store.dispatch('SPOTIFY_GET', `playlists/${id}`).then((resp) => {
+        console.log('Playlist: ', resp.data);
+        this.playlist = resp.data;
+      });
+    },
+    duration(playlist) {
+      let playlistDurationMS = 0;
+
+      playlist.tracks.items.forEach((item) => {
+        playlistDurationMS += item.track.duration_ms;
+      }, 0);
+
+      console.log('Playlist Duration MS: ', playlistDurationMS);
+      const playlistTime = moment.duration(playlistDurationMS, 'milliseconds');
+      const playlistDays = playlistTime.days();
+      const playlistHours = playlistTime.hours();
+      const playlistMinutes = playlistTime.minutes();
+      const playlistSeconds = playlistTime.seconds();
+
+      return `${playlistDays}d ${playlistHours}h ${playlistMinutes}m ${playlistSeconds}s`;
+    },
+    play() {
+      console.log('Play - not implemented');
     }
   },
-  methods: {}
+  watch: {
+    id: 'loadPlaylist'
+  }
 };
 </script>

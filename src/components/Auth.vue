@@ -1,7 +1,7 @@
 <template>
   <v-row class="text-center">
     <v-col cols="12" class="display-2">
-      Next Track
+      Spotify Clone
     </v-col>
     <v-col cols="12">
       <v-row justify="center">

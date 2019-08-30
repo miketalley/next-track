@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/components/Home.vue';
+import Test from '@/components/Test.vue';
 import Auth from '@/components/Auth.vue';
 import AuthReturn from '@/components/AuthReturn.vue';
 import Playlists from '@/components/Playlists.vue';
@@ -13,9 +13,9 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: Home
+      path: '/test',
+      name: 'test',
+      component: Test
     },
     {
       path: '/playlists',
@@ -23,16 +23,17 @@ const router = new Router({
       component: Playlists
     },
     {
-      path: '/playlist/:id',
-      name: 'playlistid',
-      component: Playlist
-    },
-    {
-      path: '/playlist',
+      path: '/playlists/:id',
       name: 'playlist',
       props: true,
       component: Playlist
     },
+    // {
+    //   path: '/playlist',
+    //   name: 'playlist',
+    //   props: true,
+    //   component: Playlist
+    // },
     {
       path: '/authReturn',
       name: 'authReturn',
