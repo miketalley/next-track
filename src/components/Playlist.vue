@@ -92,9 +92,6 @@ export default {
       const playlistSeconds = playlistTime.seconds();
 
       return `${playlistDays}d ${playlistHours}h ${playlistMinutes}m ${playlistSeconds}s`;
-    },
-    play() {
-      console.log('Play - not implemented');
     }
   },
   watch: {

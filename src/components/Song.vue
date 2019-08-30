@@ -35,7 +35,8 @@ export default {
   },
   methods: {
     play() {
-      console.log('Play Song: ', this.song.track.name);
+      console.log('Play Song: ', this.song);
+      this.$store.dispatch('PLAY_SONG', this.song);
     }
   }
 };

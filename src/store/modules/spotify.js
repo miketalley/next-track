@@ -3,7 +3,9 @@ import router from '@/router/index';
 
 export default {
   state: {
-    playlists: []
+    playlists: [],
+    currentPlaylist: null,
+    currentSong: null
   },
   mutations: {},
   actions: {
@@ -31,6 +33,15 @@ export default {
       dispatch('SPOTIFY_GET', 'me/playlists').then((resp) => {
         state.playlists = resp.data.items;
       });
+    },
+    PLAY_SONG({ state }, song) {
+      // TODO - Actually play it
+      state.currentSong = song;
+    },
+    PLAY_PLAYLIST({ state, dispatch }, playlist) {
+      state.currentPlaylist = playlist;
+      // TODO - Make this more robust?
+      dispatch('PLAY_SONG', playlist.tracks.items[0]);
     }
   }
 };

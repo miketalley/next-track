@@ -2,7 +2,7 @@
   <v-app id="inspire">
 
     <drawer v-if="loggedIn" />
-    <toolbar v-if="loggedIn" />
+    <top-bar v-if="loggedIn" />
 
     <v-content>
       <v-container>
@@ -13,24 +13,22 @@
       </v-container>
     </v-content>
 
-    <v-footer app>
-      <v-col class="text-end">
-        &copy; 2019 Mike Talley
-      </v-col>
-    </v-footer>
+    <bottom-bar v-if="loggedIn" />
   </v-app>
 </template>
 
 <script>
 import Cookies from 'js-cookie';
 import { mapState } from 'vuex';
-import Drawer from '@/components/nav/Drawer.vue';
-import Toolbar from '@/components/Toolbar.vue';
+import Drawer from '@/components/Drawer.vue';
+import TopBar from '@/components/TopBar.vue';
+import BottomBar from '@/components/BottomBar.vue';
 
 export default {
   components: {
+    BottomBar,
     Drawer,
-    Toolbar
+    TopBar
   },
   data() {
     return {

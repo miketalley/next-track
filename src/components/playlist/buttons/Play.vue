@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     play() {
-      console.log('Play - not implemented');
+      this.$store.dispatch('PLAY_PLAYLIST', this.playlist);
     }
   }
 };
