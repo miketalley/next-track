@@ -20,11 +20,9 @@
         </v-col>
         <v-col cols="12">
           <v-row>
-            <v-col cols="6">
+            <v-col cols="12">
               <play :playlist="playlist" />
-            </v-col>
-            <v-col cols="6">
-              ...
+              <more class="mx-3" :playlist="playlist" />
             </v-col>
           </v-row>
         </v-col>
@@ -40,6 +38,7 @@
 import { mapState } from 'vuex';
 import moment from 'moment';
 import Play from '@/components/playlist/buttons/Play.vue';
+import More from '@/components/playlist/buttons/More.vue';
 import Duration from '@/components/playlist/Duration.vue';
 import PlaylistImage from '@/components/playlist/Image.vue';
 import SongList from '@/components/playlist/SongList.vue';
@@ -47,6 +46,7 @@ import SongList from '@/components/playlist/SongList.vue';
 export default {
   components: {
     Duration,
+    More,
     PlaylistImage,
     Play,
     SongList

@@ -9,6 +9,7 @@
             small
             outlined
             color="white"
+            @click="play"
           >
             <v-icon dark>mdi-play</v-icon>
           </v-btn>
@@ -31,6 +32,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    play() {
+      console.log('Play Song: ', this.song.track.name);
+    }
   }
 };
 </script>
