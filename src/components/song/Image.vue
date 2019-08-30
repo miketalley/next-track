@@ -2,8 +2,8 @@
   <div>
     <img
       :src="song.track.album.images[0].url"
-      height="50"
-      width="50"
+      height="85"
+      width="85"
     >
   </div>
 </template>

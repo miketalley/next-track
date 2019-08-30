@@ -3,7 +3,8 @@ export default {
     drawer: false,
     content: {
       loading: false
-    }
+    },
+    volume: 100
   },
   mutations: {
     CONTENT_LOADING(state, isLoading) {
@@ -14,6 +15,9 @@ export default {
     },
     TOGGLE_DRAWER(state) {
       state.drawer = !state.drawer;
+    },
+    SET_VOLUME(state, volume) {
+      state.volume = volume;
     }
   },
   actions: {}

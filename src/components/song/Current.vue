@@ -1,18 +1,19 @@
 <template>
-  <v-row v-if="spotify.currentSong">
-    <v-col cols="3" class="py-0">
+  <v-row v-if="spotify.currentSong" align="center">
+    <v-col cols="3" md="4" lg="3" xl="2" class="py-0">
       <song-image :song="spotify.currentSong" />
     </v-col>
-    <v-col cols="9" class="py-0">
+    <v-col class="py-0">
       <v-row>
-        <v-col cols="12" class="py-0 subtitle-2">
+        <v-col cols="12" class="pt-1 title">
           {{ spotify.currentSong.track.name }}
         </v-col>
-        <v-col cols="12" class="pt-1 pb-0 caption">
+        <v-col cols="12" class="pt-0 subtitle-1">
           {{ artist }}
         </v-col>
       </v-row>
     </v-col>
+    <v-spacer />
   </v-row>
 </template>
 
