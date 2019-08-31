@@ -7,7 +7,7 @@
       <secondary-button icon="skip-previous" title="Previous Song" @click.native="previousSong" />
     </v-col>
     <v-col class="py-0">
-      <main-button icon="play" title="Play" @click.native="play" />
+      <play-button />
     </v-col>
     <v-col class="py-0">
       <secondary-button icon="skip-next" title="Next Song" @click.native="nextSong" />
@@ -20,12 +20,12 @@
 
 <script>
 import { mapState } from 'vuex';
-import MainButton from '@/components/buttons/icon/MainCircular.vue';
+import PlayButton from '@/components/buttons/Play.vue';
 import SecondaryButton from '@/components/buttons/icon/SecondaryCircular.vue';
 
 export default {
   components: {
-    MainButton,
+    PlayButton,
     SecondaryButton
   },
   data() {
@@ -39,7 +39,6 @@ export default {
   methods: {
     play() {
       this.$store.dispatch('PLAY_SONG');
-      console.log('Play - not yet implemented!');
     },
     previousSong() {
       console.log('Previous Song - not yet implemented!');

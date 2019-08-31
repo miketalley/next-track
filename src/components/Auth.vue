@@ -56,10 +56,14 @@ export default {
       }
     },
     auth() {
-      const scopes = 'streaming user-read-email user-read-private';
+      const scopes = [
+        'streaming user-read-email',
+        'user-read-private',
+        'user-read-playback-state'
+      ];
       window.authComplete = this.authComplete;
       window.open(
-        `https://accounts.spotify.com/authorize?client_id=${$SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(this.redirectUri)}&state=34fFs29kd09&scope=${encodeURIComponent(scopes)}`,
+        `https://accounts.spotify.com/authorize?client_id=${$SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(this.redirectUri)}&state=34fFs29kd09&scope=${encodeURIComponent(scopes.join(' '))}`,
         '_blank',
         'height=800, width=400, status=yes, toolbar=no, menubar=no, location=no'
       );

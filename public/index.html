@@ -17,6 +17,11 @@
       </strong>
     </noscript>
     <div id="app"></div>
+    <script>
+      window.SpotifyWebPlayerReady = new Promise((resolve) => {
+        window.onSpotifyWebPlaybackSDKReady = resolve;
+      });
+    </script>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <!-- built files will be auto injected -->
   </body>

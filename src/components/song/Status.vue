@@ -7,7 +7,7 @@
       <v-progress-linear
         color="blue darken-2"
         rounded
-        value="100"
+        :value="percentComplete"
       ></v-progress-linear>
     </v-col>
     <v-col class="py-0" cols="2" xl="1">
@@ -17,16 +17,31 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { millisecondsToDigital } from '@/utils/time';
+
 export default {
   data() {
     return {};
   },
   computed: {
+    ...mapState([
+      'spotify'
+    ]),
     songDurationPlayed() {
-      return '0:00';
+      const { position } = this.spotify.playerState;
+
+      return (position && millisecondsToDigital(position)) || '0:00';
     },
     totalSongDuration() {
-      return '2:00';
+      const { duration } = this.spotify.playerState;
+
+      return (duration && millisecondsToDigital(duration)) || '0:00';
+    },
+    percentComplete() {
+      const { position, duration } = this.spotify.playerState;
+
+      return position / duration * 100;
     }
   },
   methods: {}

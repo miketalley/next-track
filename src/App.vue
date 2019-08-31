@@ -40,6 +40,7 @@ export default {
     this.loadCookies();
     this.$store.commit('SET_DRAWER_STATE', false);
     this.$store.commit('CONTENT_LOADING', false);
+    this.$store.commit('INIT');
   },
   computed: {
     ...mapState([
