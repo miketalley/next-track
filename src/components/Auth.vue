@@ -56,11 +56,12 @@ export default {
       }
     },
     auth() {
+      const scopes = 'streaming user-read-email user-read-private';
       window.authComplete = this.authComplete;
       window.open(
-        `https://accounts.spotify.com/authorize?client_id=${$SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${this.redirectUri}&state=34fFs29kd09`,
+        `https://accounts.spotify.com/authorize?client_id=${$SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(this.redirectUri)}&state=34fFs29kd09&scope=${encodeURIComponent(scopes)}`,
         '_blank',
-        'height=700, width=400, status=yes, toolbar=no, menubar=no, location=no'
+        'height=800, width=400, status=yes, toolbar=no, menubar=no, location=no'
       );
     },
     obtainAccessToken(code) {

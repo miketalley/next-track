@@ -16,7 +16,6 @@ export default {
 
         Cookies.set('SPOTIFY_ACCESS_TOKEN_DATA', data, { expires: expirationInDays });
         state.spotify.tokenData = data;
-        console.log('User State: ', state);
         // router.push('home');
       }
     },
@@ -27,6 +26,13 @@ export default {
       router.push('auth');
     }
   },
+  getters: {
+    GET_SPOTIFY_ACCESS_TOKEN(state) {
+      const { tokenData } = state.spotify;
+
+      return tokenData && tokenData.access_token;
+    }
+  },
   actions: {
     LOGIN({ commit, dispatch }, tokenData) {
       if (tokenData) {
@@ -35,7 +41,6 @@ export default {
       }
     },
     LOAD_SPOTIFY_USER({ dispatch, state }) {
-      console.log('Loading spotify user: ', state);
       dispatch('SPOTIFY_GET', 'me').then((resp) => {
         state.spotify.user = resp.data;
       });

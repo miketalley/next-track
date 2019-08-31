@@ -1,19 +1,19 @@
 <template>
   <v-row>
     <v-col class="py-0">
-      <secondary-button icon="shuffle" title="Shuffle" @click="toggleShuffle" />
+      <secondary-button icon="shuffle" title="Shuffle" @click.native="toggleShuffle" />
     </v-col>
     <v-col class="py-0">
-      <secondary-button icon="skip-previous" title="Previous Song" @click="previousSong" />
+      <secondary-button icon="skip-previous" title="Previous Song" @click.native="previousSong" />
     </v-col>
     <v-col class="py-0">
-      <main-button icon="play" title="Play" @click="play" />
+      <main-button icon="play" title="Play" @click.native="play" />
     </v-col>
     <v-col class="py-0">
-      <secondary-button icon="skip-next" title="Next Song" @click="nextSong" />
+      <secondary-button icon="skip-next" title="Next Song" @click.native="nextSong" />
     </v-col>
     <v-col class="py-0">
-      <secondary-button icon="repeat" title="Repeat" @click="toggleRepeat" />
+      <secondary-button icon="repeat" title="Repeat" @click.native="toggleRepeat" />
     </v-col>
   </v-row>
 </template>
@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     play() {
+      this.$store.dispatch('PLAY_SONG');
       console.log('Play - not yet implemented!');
     },
     previousSong() {

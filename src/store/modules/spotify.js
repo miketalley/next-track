@@ -1,14 +1,19 @@
 import axios from 'axios';
 import router from '@/router/index';
+import { createPlayer, play } from '@/utils/spotify';
 
 export default {
   state: {
+    player: null,
     playlists: [],
     currentPlaylist: null,
     currentSong: null
   },
   mutations: {},
   actions: {
+    CREATE_SPOTIFY_PLAYER({ getters, state }) {
+      state.player = createPlayer(() => getters.GET_SPOTIFY_ACCESS_TOKEN);
+    },
     SPOTIFY_GET({ rootState }, endpoint) {
       return new Promise((resolve, reject) => {
         if (rootState.user.spotify.tokenData) {
@@ -21,8 +26,6 @@ export default {
           }).then(resolve).catch((e) => {
             console.log('SPOTIFY_GET Error: ', e);
             reject(e);
-          }).finally((foo, bar) => {
-            console.log('Finally: ', foo, bar);
           });
         } else {
           router.push({ name: 'auth' });
@@ -35,8 +38,20 @@ export default {
       });
     },
     PLAY_SONG({ state }, song) {
-      // TODO - Actually play it
-      state.currentSong = song;
+      const songToPlay = song || state.currentSong;
+      console.log('Song to play: ', songToPlay);
+      const playData = {
+        playerInstance: state.player,
+        spotifyURI: songToPlay.track.uri
+      };
+
+      console.log('Play Data: ', playData);
+
+      state.currentSong = songToPlay;
+      play({
+        playerInstance: state.player,
+        spotifyURI: songToPlay.track.uri
+      });
     },
     PLAY_PLAYLIST({ state, dispatch }, playlist) {
       state.currentPlaylist = playlist;

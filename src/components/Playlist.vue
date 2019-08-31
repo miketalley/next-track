@@ -73,7 +73,6 @@ export default {
   methods: {
     loadPlaylist(id) {
       this.$store.dispatch('SPOTIFY_GET', `playlists/${id}`).then((resp) => {
-        console.log('Playlist: ', resp.data);
         this.playlist = resp.data;
       });
     },
@@ -84,7 +83,6 @@ export default {
         playlistDurationMS += item.track.duration_ms;
       }, 0);
 
-      console.log('Playlist Duration MS: ', playlistDurationMS);
       const playlistTime = moment.duration(playlistDurationMS, 'milliseconds');
       const playlistDays = playlistTime.days();
       const playlistHours = playlistTime.hours();
