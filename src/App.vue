@@ -41,6 +41,7 @@ export default {
     this.$store.commit('SET_DRAWER_STATE', false);
     this.$store.commit('CONTENT_LOADING', false);
     this.$store.commit('INIT');
+    this.$store.dispatch('LOAD_PLAYER');
   },
   computed: {
     ...mapState([

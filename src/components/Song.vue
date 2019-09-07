@@ -3,16 +3,7 @@
     <v-list-item-content>
       <v-row no-gutters justify="center" align="center">
         <v-col cols="1">
-          <v-btn
-            fab
-            dark
-            small
-            outlined
-            color="white"
-            @click="play"
-          >
-            <v-icon dark>mdi-play</v-icon>
-          </v-btn>
+          <play-button :song="song" />
         </v-col>
         <v-col cols="11" class="mt-0">
           {{ song.track.name }}
@@ -23,7 +14,12 @@
 </template>
 
 <script>
+import PlayButton from '@/components/buttons/Play.vue';
+
 export default {
+  components: {
+    PlayButton
+  },
   props: {
     song: {
       type: Object,
