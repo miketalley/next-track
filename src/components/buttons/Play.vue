@@ -27,7 +27,13 @@ export default {
       'spotify'
     ]),
     iconFunction() {
-      return this.spotify.playerState.paused ? 'play' : 'pause';
+      let playingStatus = this.spotify.playerState.paused ? 'play' : 'pause';
+
+      if (this.song && this.spotify.currentSong !== this.song) {
+        playingStatus = 'play';
+      }
+
+      return playingStatus;
     },
     title() {
       return this.iconFunction.charAt(0).toUpperCase() + this.iconFunction.slice(1);
